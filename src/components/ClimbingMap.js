@@ -1,15 +1,32 @@
 import React from 'react';
-import { GoogleApiWrapper, Map } from 'google-maps-react';
+import { Map } from 'google-maps-react';
+
+import { ChooseLocation } from '../utils/Utils';
 
 export default class ClimbingMap extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {google: props.google};
+        this.state = {
+            google: props.google,
+            initialCenter: ChooseLocation()
+        };
     }
     render() {
-        const {google} = this.state;
+
+        // Styles
+        const mapStyle = {
+            height: '100vh',
+            width: '100vw',
+        };
+
+        const { google, initialCenter } = this.state;
+
         return(
-            <Map google={google}/>
+            <Map google={google}
+                 style={mapStyle}
+                 initialCenter={initialCenter}
+                 searchBox={true}
+                 zoom={8} />
         )
     }
 }
