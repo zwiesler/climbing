@@ -14,6 +14,7 @@ export default class LocationSearch extends React.Component {
         return (
                 <Search category
                         style={searchBoxStyle}
+                        placeholder={'Search Location'}
                         icon={'search'}/>
         )
     }
