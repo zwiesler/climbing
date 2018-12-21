@@ -1,8 +1,8 @@
 import React from 'react';
-import { GoogleApiWrapper, Map } from 'google-maps-react';
+import { GoogleApiWrapper } from 'google-maps-react';
 
 import { GOOGLE_API_KEY } from '../utils/secrets';
-// import Map from '../components/Map';
+import ClimbingMap from './ClimbingMap';
 
 export class Container extends React.Component {
     render() {
@@ -15,7 +15,7 @@ export class Container extends React.Component {
 
         return (
             <div style={containerStyle}>
-                <Map google={this.props.google} />
+                <ClimbingMap google={this.props.google} />
             </div>
         )
     }
