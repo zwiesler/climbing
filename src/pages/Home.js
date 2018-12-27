@@ -1,11 +1,10 @@
 import _ from "lodash";
 import React from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Dropdown } from 'semantic-ui-react'
 
 import API from "../utils/API";
 import {GOOGLE_API_KEY} from "../utils/secrets";
 import {GoogleApiWrapper, Map} from "google-maps-react";
-import LocationSearch from '../components/location_search/LocationSearch';
 import {handleError, initialCenterDefault} from "../utils/Utils";
 
 class Home extends React.Component {
@@ -14,8 +13,9 @@ class Home extends React.Component {
         this.state = {
             google: props.google,
             center: null,
-            locationsOptions: [],
-            isLoading: false
+            locationOptions: [],
+            isLoading: false,
+            refreshCenter: false
         };
     }
 
@@ -24,28 +24,20 @@ class Home extends React.Component {
 
         this.setState({isLoading: true});
         API.locations().getAll().then((resp) => {
-            let locationsOptions = [];
-            _.forOwn(resp.data['_items'], (value) => {
-                locationsOptions.push({
-                    location_name: value['location_name'],
-                    lat: value['lat'],
-                    lng: value['lng']
-                })
+            let locationOptions = [];
+            _.each(resp.data['_items'], (item, idx) => {
+                locationOptions.push({key: idx, value: item, text: item})
             });
             this.setState({
-                locationsOptions: locationsOptions,
+                locationOptions: locationOptions,
                 center: initialCenterDefault,
                 isLoading: false
-            })
+            });
         }).catch((error) => {
             this.setState({isLoading: false});
             handleError(error, this);
         })
     }
-
-    handleClick = (e) => {
-        console.log('we out here 2');
-    };
 
     render() {
         // Styles
@@ -53,12 +45,15 @@ class Home extends React.Component {
             height: '100vh',
             width: '100vw',
         };
-        const { google, center, isLoading } = this.state;
+        const { google, center, locationOptions, isLoading } = this.state;
         return (
             <Grid className="App">
                 <Grid.Column>
                     <Grid.Row>
-                        <LocationSearch handleClick={this.handleClick}/>
+                        <Dropdown fluid
+                                  search
+                                  selection
+                                  options={locationOptions} />
                     </Grid.Row>
                     <Grid.Row>
                         <Map google={google}
