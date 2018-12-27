@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d704b4d1-7a45-4894-b34a-92cc90433b5c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/API.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Suggestions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ClimbingMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ClimbingMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Container.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LocationSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LocationSearch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,13 +44,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/LocationSearch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="73" column="95" selection-start-line="73" selection-start-column="95" selection-end-line="73" selection-end-column="95" />
+            <state relative-caret-position="146">
+              <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Suggestions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+              <folding>
+                <element signature="e#1#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/pages/Home.js" />
         <option value="$PROJECT_DIR$/src/components/ClimbingMap.js" />
         <option value="$PROJECT_DIR$/src/components/LocationSearch.js" />
+        <option value="$PROJECT_DIR$/src/components/Suggestions.js" />
       </list>
     </option>
   </component>
@@ -255,18 +262,18 @@
       <option name="presentableId" value="Default" />
       <updated>1545400532578</updated>
       <workItem from="1545400533745" duration="16737000" />
-      <workItem from="1545658963928" duration="17319000" />
+      <workItem from="1545658963928" duration="18920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34056000" />
+    <option name="totallyTimeSpent" value="35657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49887386" visible="true" weight="0.29809725" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49887386" visible="true" weight="0.29809725" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5011261" side_tool="true" weight="0.24955857" />
@@ -280,7 +287,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3022599" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3022599" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -389,16 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ClimbingMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -409,12 +406,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/LocationSearch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="73" column="95" selection-start-line="73" selection-start-column="95" selection-end-line="73" selection-end-column="95" />
+        <state relative-caret-position="146">
+          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Suggestions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding>
+            <element signature="e#1#27#0" expanded="true" />
           </folding>
         </state>
       </provider>

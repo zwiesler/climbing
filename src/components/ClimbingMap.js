@@ -50,7 +50,6 @@ export class ClimbingMap extends React.Component {
         };
 
         const { google, center, isLoading } = this.state;
-        console.log(this.state.locationsOptions);
         return(
             <Map google={google}
                  style={mapStyle}

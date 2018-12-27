@@ -2,6 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { Input, Popup } from 'semantic-ui-react'
 
+import Suggestions from './Suggestions';
+
 
 export const SOURCE = [
     {locationName: 'Boston', lat: 42.3601, lng: -71.0589},
@@ -42,7 +44,7 @@ export default class LocationSearch extends React.Component {
 
     createSearchSuggestions = (locations) => {
         const suggestions = [];
-        _.each(locations, (l) => suggestions.push(<Popup.Content content={l.locationName}/>));
+        _.each(locations, (l, idx) => suggestions.push(<Suggestions location={l} key={idx}/>));
         return suggestions
     };
 
