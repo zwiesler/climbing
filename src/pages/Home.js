@@ -40,11 +40,17 @@ class Home extends React.Component {
     }
 
     render() {
+
         // Styles
         const mapStyle = {
             height: '100vh',
             width: '100vw',
         };
+        const dropdownStyle = {
+            margin: '5px 0 5px 10px',
+            width: '200px'
+        };
+
         const { google, center, locationOptions, isLoading } = this.state;
         return (
             <Grid className="App">
@@ -53,6 +59,8 @@ class Home extends React.Component {
                         <Dropdown fluid
                                   search
                                   selection
+                                  style={dropdownStyle}
+                                  value={locationOptions.length > 0 ? locationOptions[0].value : 'No search results'}
                                   options={locationOptions} />
                     </Grid.Row>
                     <Grid.Row>
