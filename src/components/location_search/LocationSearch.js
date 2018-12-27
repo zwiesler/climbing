@@ -17,7 +17,8 @@ export default class LocationSearch extends React.Component {
         this.state = {
             isLoading: false,
             results: [],
-            value: ''
+            value: '',
+            handleClick: props.handleClick
         };
     }
 
@@ -44,7 +45,9 @@ export default class LocationSearch extends React.Component {
 
     createSearchSuggestions = (locations) => {
         const suggestions = [];
-        _.each(locations, (l, idx) => suggestions.push(<Suggestions location={l} key={idx}/>));
+        _.each(locations, (l, idx) => suggestions.push(<Suggestions location={l}
+                                                                    key={idx}
+                                                                    handleClick={this.state.handleClick}/>));
         return suggestions
     };
 
@@ -69,6 +72,7 @@ export default class LocationSearch extends React.Component {
                                    placeholder={'Search Location'}
                                    icon={'search'}
                                    onChange={_.debounce(this.handleChange, 500, {leading: true})} />}
+
                    style={popUpStyle}
                    inverted={true}
                    positon={'left'}

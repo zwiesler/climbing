@@ -43,6 +43,10 @@ class Home extends React.Component {
         })
     }
 
+    handleClick = (e) => {
+        console.log('we out here 2');
+    };
+
     render() {
         // Styles
         const mapStyle = {
@@ -54,7 +58,7 @@ class Home extends React.Component {
             <Grid className="App">
                 <Grid.Column>
                     <Grid.Row>
-                        <LocationSearch />
+                        <LocationSearch handleClick={this.handleClick}/>
                     </Grid.Row>
                     <Grid.Row>
                         <Map google={google}

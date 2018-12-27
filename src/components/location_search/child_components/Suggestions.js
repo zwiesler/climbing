@@ -5,16 +5,17 @@ export default class Suggestions extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: props.location
+            location: props.location,
+            handleClick: props.handleClick
         };
     }
 
     render() {
 
-        const { idx, location } = this.state;
+        const { location, handleClick } = this.state;
         return (
             <Popup.Content>
-                <Button>{location.locationName}</Button>
+                <Button onClick={handleClick}>{location.locationName}</Button>
             </Popup.Content>
         )
     }
