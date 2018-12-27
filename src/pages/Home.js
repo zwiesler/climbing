@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react'
 
-import GoogleApiWrapper from '../components/Container';
 import LocationSearch from '../components/LocationSearch';
+import ClimbingMap from '../components/ClimbingMap';
 
 class Home extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Home extends React.Component {
                         <LocationSearch />
                     </Grid.Row>
                     <Grid.Row>
-                        <GoogleApiWrapper />
+                        <ClimbingMap />
                     </Grid.Row>
                 </Grid.Column>
             </Grid>
