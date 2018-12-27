@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Input, Popup } from 'semantic-ui-react'
 
-import Suggestions from './Suggestions';
+import Suggestions from './child_components/Suggestions';
 
 
 export const SOURCE = [
