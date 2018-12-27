@@ -9,7 +9,14 @@ export const api = axios.create({
 export default {
     locations() {
         return {
-            getAll: () => api.get(`/locations`, getDefaultHeader())
+            getAll: () => api.get(`/locations`, getDefaultHeader()),
+            getLocationCoordinates: (locationName) => api.get(
+                `/get_location_coordinates`,
+                {
+                    params: {location_name: locationName},
+                    headers: getDefaultHeader().headers
+                    },
+            )
         }
     }
 }

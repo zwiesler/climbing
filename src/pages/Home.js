@@ -11,11 +11,11 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: false,
             google: props.google,
             center: null,
             locationOptions: [],
-            isLoading: false,
-            refreshCenter: false
+            dropdownValue: ''
         };
     }
 
@@ -30,6 +30,7 @@ class Home extends React.Component {
             });
             this.setState({
                 locationOptions: locationOptions,
+                dropdownValue: locationOptions.length > 0 ? locationOptions[0].value : 'No search results',
                 center: initialCenterDefault,
                 isLoading: false
             });
@@ -38,6 +39,23 @@ class Home extends React.Component {
             handleError(error, this);
         })
     }
+
+    handleChange = (e, data) => {
+        if (data.value !== this.state.dropdownValue) {
+            this.setState({dropdownValue: data.value});
+        }
+    };
+
+    handleClick = (e, data) => {
+        this.setState({isLoading: true});
+        API.locations().getLocationCoordinates(this.state.dropdownValue).then((resp) => {
+            console.log(resp);
+            this.setState({isLoading: false, center: resp.data});
+        }).catch((error) => {
+            this.setState({isLoading: false});
+            handleError(error, this);
+        })
+    };
 
     render() {
 
@@ -51,7 +69,7 @@ class Home extends React.Component {
             width: '200px'
         };
 
-        const { google, center, locationOptions, isLoading } = this.state;
+        const { isLoading, google, center, locationOptions, dropdownValue } = this.state;
         return (
             <Grid className="App">
                 <Grid.Column>
@@ -60,8 +78,10 @@ class Home extends React.Component {
                                   search
                                   selection
                                   style={dropdownStyle}
-                                  value={locationOptions.length > 0 ? locationOptions[0].value : 'No search results'}
-                                  options={locationOptions} />
+                                  value={dropdownValue}
+                                  options={locationOptions}
+                                  onChange={this.handleChange}
+                                  onClick={this.handleClick}/>
                     </Grid.Row>
                     <Grid.Row>
                         <Map google={google}
