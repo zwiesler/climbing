@@ -4,7 +4,7 @@ import { Grid, Dropdown } from 'semantic-ui-react'
 
 import API from "../utils/API";
 import {GOOGLE_API_KEY} from "../utils/secrets";
-import {GoogleApiWrapper, Map} from "google-maps-react";
+import {GoogleApiWrapper, Map, Marker, InfoWindow} from "google-maps-react";
 import {handleError, initialCenterDefault} from "../utils/Utils";
 
 class Home extends React.Component {
@@ -28,6 +28,9 @@ class Home extends React.Component {
             _.each(resp.data['_items'], (item, idx) => {
                 locationOptions.push({key: idx, value: item, text: item})
             });
+            const boston = _.filter(locationOptions, (o) => o.value === 'Boston');
+            const nonBoston = _.filter(locationOptions, (o) => o.value !== 'Boston');
+            locationOptions = boston.concat(_.sortBy(nonBoston, ['value']));
             this.setState({
                 locationOptions: locationOptions,
                 dropdownValue: locationOptions.length > 0 ? locationOptions[0].value : 'No search results',
@@ -49,7 +52,6 @@ class Home extends React.Component {
     handleClick = (e, data) => {
         this.setState({isLoading: true});
         API.locations().getLocationCoordinates(this.state.dropdownValue).then((resp) => {
-            console.log(resp);
             this.setState({isLoading: false, center: resp.data});
         }).catch((error) => {
             this.setState({isLoading: false});
@@ -88,7 +90,9 @@ class Home extends React.Component {
                              style={mapStyle}
                              loading={isLoading}
                              center={center}
-                             zoom={8} />
+                             zoom={8}>
+                            <Marker position={center} />
+                        </Map>
                     </Grid.Row>
                 </Grid.Column>
             </Grid>
