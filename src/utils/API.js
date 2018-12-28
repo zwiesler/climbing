@@ -20,6 +20,17 @@ export default {
                     },
             )
         }
+    },
+    google_sheets() {
+        return {
+            getLocation: (locationName) => api.get(
+                `/get_climbing_sheet`,
+                {
+                    params: {locationName: locationName},
+                    headers: getDefaultHeader().headers
+                }
+            )
+        }
     }
 }
 

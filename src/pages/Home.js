@@ -1,12 +1,10 @@
 import _ from "lodash";
 import React from 'react';
-import ReactGoogleSheets from 'react-google-sheets';
 import { Grid, Dropdown, Container } from 'semantic-ui-react'
 import {GoogleApiWrapper, Map, Marker, InfoWindow} from "google-maps-react";
 
 import API from "../utils/API";
-import {GOOGLE_API_KEY, CLIMBING_SHEET_ID} from "../utils/secrets";
-import { web } from '../utils/client_id';
+import {GOOGLE_API_KEY} from "../utils/secrets";
 import {handleError, initialCenterDefault} from "../utils/Utils";
 
 class Home extends React.Component {
@@ -20,7 +18,8 @@ class Home extends React.Component {
             dropdownValue: '',
             showingInfoWindow: false,
             activeMarker: {},
-            sheetLoaded: false
+            sheetLoaded: false,
+            sheetData: null
         };
     }
 
@@ -64,11 +63,17 @@ class Home extends React.Component {
         })
     };
 
-    handleMarkerClick = (props, marker, e) =>
-        this.setState({
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
+    handleMarkerClick = (props, marker, e) => {
+        console.log(this.state.dropdownValue);
+        API.google_sheets().getLocation(this.state.dropdownValue).then((resp) => {
+            this.setState({
+                activeMarker: marker,
+                showingInfoWindow: true,
+                sheetLoaded: true,
+                sheetData: resp.data
+            });
+        })
+    };
 
     handleMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
