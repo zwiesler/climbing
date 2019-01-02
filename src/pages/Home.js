@@ -64,7 +64,6 @@ class Home extends React.Component {
     };
 
     handleMarkerClick = (props, marker, e) => {
-        console.log(this.state.dropdownValue);
         API.google_sheets().getLocation(this.state.dropdownValue).then((resp) => {
             this.setState({
                 activeMarker: marker,
