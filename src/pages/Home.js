@@ -5,7 +5,7 @@ import {GoogleApiWrapper, Map, Marker, InfoWindow} from "google-maps-react";
 
 import API from "../utils/API";
 import {GOOGLE_API_KEY} from "../utils/secrets";
-import {handleError, initialCenterDefault} from "../utils/Utils";
+import {handleError, initialCenterDefault, googleSheetURL} from "../utils/Utils";
 
 class Home extends React.Component {
     constructor(props) {
@@ -65,6 +65,7 @@ class Home extends React.Component {
 
     handleMarkerClick = (props, marker, e) => {
         API.google_sheets().getLocation(this.state.dropdownValue).then((resp) => {
+            console.log(resp);
             this.setState({
                 activeMarker: marker,
                 showingInfoWindow: true,
@@ -89,10 +90,18 @@ class Home extends React.Component {
         const mapStyle = {
             height: '100vh',
             width: '100vw',
+            marginTop: '300px'
         };
         const dropdownStyle = {
             margin: '5px 0 5px 10px',
             width: '200px'
+        };
+
+        const googleSheetStyle = {
+            position: 'absolute',
+            width: '100%',
+            height: '400px',
+            border: null
         };
 
         const { isLoading, google, center, locationOptions, dropdownValue } = this.state;
@@ -109,7 +118,12 @@ class Home extends React.Component {
                               onClick={this.handleClick}/>
                 </Grid.Row>
                 <Grid.Row>
-                    <Container><p>Hi there</p></Container>
+                    <div>
+                        <iframe style={googleSheetStyle}
+                                scrolling="yes"
+                                title="googleSheet"
+                                src={googleSheetURL} />
+                    </div>
                 </Grid.Row>
                 <Grid.Row>
                     <Map google={google}

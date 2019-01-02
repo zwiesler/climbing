@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import {CLIMBING_SHEET_ID} from "../utils/secrets";
 
 export const initialCenterDefault = {lat: 42.3601, lng: -71.0589};
+export const googleSheetURL = "https://docs.google.com/spreadsheets/d/" + CLIMBING_SHEET_ID;
 
 export function handleError(error, context) {
     if (_.isNil(error.response) || _.isNil(error.response.status)) {
