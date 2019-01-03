@@ -111,7 +111,10 @@ class Home extends React.Component {
                               onChange={this.handleChange}
                               onClick={this.handleClick}/>
                 </Grid.Row>
-                <GoogleSheet showingInfoWindow={showingInfoWindow} googleSheetURLlatest={googleSheetURLlatest}/>
+
+                <GoogleSheet showingInfoWindow={showingInfoWindow}
+                             googleSheetURLlatest={googleSheetURLlatest} />
+
                 <Grid.Row>
                     <Map google={google}
                          style={mapStyle}
