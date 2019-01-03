@@ -49,15 +49,14 @@ class Home extends React.Component {
     }
 
     handleChange = (e, data) => {
-        if (data.value !== this.state.dropdownValue) {
-            this.setState({dropdownValue: data.value});
-        }
-    };
-
-    handleClick = (e, data) => {
         this.setState({isLoading: true});
-        API.locations().getLocationCoordinates(this.state.dropdownValue).then((resp) => {
-            this.setState({isLoading: false, center: resp.data});
+        API.locations().getLocationCoordinates(data.value).then((resp) => {
+            this.setState({
+                isLoading: false,
+                center: resp.data,
+                showingInfoWindow: false,
+                dropdownValue: data.value
+            });
         }).catch((error) => {
             this.setState({isLoading: false});
             handleError(error, this);
@@ -108,8 +107,8 @@ class Home extends React.Component {
                               style={dropdownStyle}
                               value={dropdownValue}
                               options={locationOptions}
-                              onChange={this.handleChange}
-                              onClick={this.handleClick}/>
+                              selectOnNavigation={false}
+                              onChange={this.handleChange} />
                 </Grid.Row>
 
                 <GoogleSheet showingInfoWindow={showingInfoWindow}
