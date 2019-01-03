@@ -91,7 +91,7 @@ class Home extends React.Component {
         const mapStyle = {
             height: '100vh',
             width: '100vw',
-            marginTop: showingInfoWindow ? '300px' : 0
+            marginTop: showingInfoWindow ? '400px' : 0
         };
         const dropdownStyle = {
             margin: '5px 0 5px 10px',
