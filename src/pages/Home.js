@@ -20,6 +20,7 @@ class Home extends React.Component {
             locationOptions: [],
             dropdownValue: '',
             showingInfoWindow: false,
+            showingSheet: false,
             showingMap: true,
             activeMarker: {},
             sheetLoaded: false,
@@ -88,7 +89,7 @@ class Home extends React.Component {
 
     handleTabClick = (tab) => {
         this.setState({
-            showingInfoWindow: tab !== 'map',
+            showingSheet: tab !== 'map',
             showingMap: tab === 'map',
             sheetLoaded: tab !== 'map',
             googleSheetURLlatest: tab !== 'map' ? googleSheetURL + '/edit#gid=' + googleSheetTabMap[tab] : null
@@ -98,7 +99,7 @@ class Home extends React.Component {
     render() {
 
         const { isLoading, google, center, locationOptions, dropdownValue,
-            googleSheetURLlatest, showingInfoWindow, showingMap, activeMarker } = this.state;
+            googleSheetURLlatest, showingInfoWindow, showingMap, showingSheet, activeMarker } = this.state;
 
         const dropdownStyle = {
             margin: '5px 0 5px 10px',
@@ -125,7 +126,7 @@ class Home extends React.Component {
                     </Grid.Column>
                 </Grid.Row>
 
-                <GoogleSheet showingInfoWindow={showingInfoWindow}
+                <GoogleSheet showingSheet={showingSheet}
                              showingMap={showingMap}
                              googleSheetURLlatest={googleSheetURLlatest}
                 />
