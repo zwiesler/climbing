@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap-css": "^4.0.0-alpha.5",
     "google-maps-react": "^2.0.2",
     "lodash": "^4.17.11",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-tabs": "^3.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"
   },

@@ -1,12 +1,14 @@
 import _ from "lodash";
 import React from 'react';
-import { Grid, Dropdown, Container } from 'semantic-ui-react';
-import {GoogleApiWrapper, Map, Marker, InfoWindow} from "google-maps-react";
+import { Grid, Dropdown } from 'semantic-ui-react';
+import { GoogleApiWrapper } from "google-maps-react";
 
 import API from "../utils/API";
 import {GOOGLE_API_KEY} from "../utils/secrets";
-import {handleError, initialCenterDefault, googleSheetURL} from "../utils/Utils";
 import GoogleSheet from '../components/GoogleSheet';
+import GoogleMap from '../components/GoogleMap';
+import NavigationHeader from '../components/NavigationHeader';
+import {handleError, initialCenterDefault, googleSheetURL} from "../utils/Utils";
 
 class Home extends React.Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class Home extends React.Component {
             locationOptions: [],
             dropdownValue: '',
             showingInfoWindow: false,
+            showingMap: true,
             activeMarker: {},
             sheetLoaded: false,
             googleSheetURLlatest: null
@@ -83,16 +86,18 @@ class Home extends React.Component {
         }
     };
 
+    handleTabClick = () => {
+        this.setState({
+            showingInfoWindow: false,
+            showingMap: false
+        })
+    };
+
     render() {
 
-        const { isLoading, google, center, locationOptions, dropdownValue, googleSheetURLlatest, showingInfoWindow } = this.state;
+        const { isLoading, google, center, locationOptions, dropdownValue,
+            googleSheetURLlatest, showingInfoWindow, showingMap, activeMarker } = this.state;
 
-        // Styles
-        const mapStyle = {
-            height: '100vh',
-            width: '100vw',
-            marginTop: showingInfoWindow ? '400px' : 0
-        };
         const dropdownStyle = {
             margin: '5px 0 5px 10px',
             width: '200px'
@@ -100,35 +105,33 @@ class Home extends React.Component {
 
         return (
             <Grid className="App">
-                <Grid.Row>
-                    <Dropdown fluid
-                              search
-                              selection
-                              style={dropdownStyle}
-                              value={dropdownValue}
-                              options={locationOptions}
-                              selectOnNavigation={false}
-                              onChange={this.handleChange} />
+
+                <Grid.Row columns={2}>
+                    <Grid.Column width={3}>
+                        <Dropdown fluid
+                                  search
+                                  selection
+                                  style={dropdownStyle}
+                                  value={dropdownValue}
+                                  options={locationOptions}
+                                  selectOnNavigation={false}
+                                  onChange={this.handleChange} />
+                    </Grid.Column>
+                    <Grid.Column>
+                        <NavigationHeader handleTabClick={this.handleTabClick}/>
+                    </Grid.Column>
                 </Grid.Row>
 
                 <GoogleSheet showingInfoWindow={showingInfoWindow}
                              googleSheetURLlatest={googleSheetURLlatest} />
 
-                <Grid.Row>
-                    <Map google={google}
-                         style={mapStyle}
-                         loading={isLoading}
-                         center={center}
-                         zoom={8}
-                         onClick={this.handleMapClicked}>
-                        <Marker position={center} onClick={this.handleMarkerClick}/>
-                        <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
-                            <Container>
-                                <p>Hi there</p>
-                            </Container>
-                        </InfoWindow>
-                    </Map>
-                </Grid.Row>
+                <GoogleMap isLoading={isLoading}
+                           google={google}
+                           center={center}
+                           showingInfoWindow={showingInfoWindow}
+                           handleMapClicked={this.handleMapClicked}
+                           handleMarkerClick={this.handleMarkerClick}
+                           activeMarker={activeMarker} />
             </Grid>
         )
     }
