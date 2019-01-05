@@ -35,8 +35,7 @@ export default class GoogleMap extends React.Component {
 
         const mapStyle = {
             height: '100vh',
-            width: '100vw',
-            marginTop: showingInfoWindow ? '400px' : 0
+            width: '100vw'
         };
 
         if (!showingMap) {
@@ -51,11 +50,10 @@ export default class GoogleMap extends React.Component {
                          zoom={8}
                          onClick={handleMapClicked}>
                         <Marker position={center} onClick={handleMarkerClick}/>
-                        <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
-                            <Container>
-                                <p>Hi there</p>
-                            </Container>
-                        </InfoWindow>
+                        <InfoWindow marker={activeMarker}
+                                    visible={showingInfoWindow}
+                                    content={'hi there'}
+                        />
                     </Map>
                 </Grid.Row>
             )
