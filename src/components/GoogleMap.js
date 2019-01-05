@@ -13,7 +13,8 @@ export default class GoogleMap extends React.Component {
             showingInfoWindow: props.showingInfoWindow,
             handleMapClicked: props.handleMapClicked,
             handleMarkerClick: props.handleMarkerClick,
-            activeMarker: props.activeMarker
+            activeMarker: props.activeMarker,
+            showingMap: props.showingMap
         }
     }
 
@@ -30,7 +31,7 @@ export default class GoogleMap extends React.Component {
     render() {
 
         const { isLoading, google, center, showingInfoWindow, handleMapClicked, handleMarkerClick,
-            activeMarker } = this.state;
+            activeMarker, showingMap } = this.state;
 
         const mapStyle = {
             height: '100vh',
@@ -38,22 +39,26 @@ export default class GoogleMap extends React.Component {
             marginTop: showingInfoWindow ? '400px' : 0
         };
 
-        return (
-            <Grid.Row>
-                <Map google={google}
-                     style={mapStyle}
-                     loading={isLoading}
-                     center={center}
-                     zoom={8}
-                     onClick={handleMapClicked}>
-                    <Marker position={center} onClick={handleMarkerClick}/>
-                    <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
-                        <Container>
-                            <p>Hi there</p>
-                        </Container>
-                    </InfoWindow>
-                </Map>
-            </Grid.Row>
-        )
+        if (!showingMap) {
+            return null
+        } else {
+            return (
+                <Grid.Row>
+                    <Map google={google}
+                         style={mapStyle}
+                         loading={isLoading}
+                         center={center}
+                         zoom={8}
+                         onClick={handleMapClicked}>
+                        <Marker position={center} onClick={handleMarkerClick}/>
+                        <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+                            <Container>
+                                <p>Hi there</p>
+                            </Container>
+                        </InfoWindow>
+                    </Map>
+                </Grid.Row>
+            )
+        }
     }
 }

@@ -7,6 +7,7 @@ export default class GoogleSheet extends React.Component {
         super(props);
         this.state = {
             showingInfoWindow: props.showingInfoWindow,
+            showingMap: props.showingMap,
             googleSheetURLlatest: props.googleSheetURLlatest
         }
     }
@@ -22,12 +23,12 @@ export default class GoogleSheet extends React.Component {
     }
 
     render() {
-        const { showingInfoWindow, googleSheetURLlatest } = this.state;
+        const { showingInfoWindow, showingMap, googleSheetURLlatest } = this.state;
 
         const googleSheetStyle = {
             position: 'absolute',
             width: '100%',
-            height: '400px',
+            height: showingMap ? '400px' : '100vh',
             border: null
         };
 

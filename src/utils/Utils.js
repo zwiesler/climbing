@@ -3,6 +3,13 @@ import {CLIMBING_SHEET_ID} from "../utils/secrets";
 
 export const initialCenterDefault = {lat: 42.3601, lng: -71.0589};
 export const googleSheetURL = "https://docs.google.com/spreadsheets/d/" + CLIMBING_SHEET_ID;
+export const googleSheetTabMap = {
+    'log': '2003074421',
+    'newEngland': '645314090',
+    'freerider': '617802640',
+    'moonlight': '1991768076',
+    'colorado': '567437704'
+};
 
 export function handleError(error, context) {
     if (_.isNil(error.response) || _.isNil(error.response.status)) {

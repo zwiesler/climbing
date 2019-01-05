@@ -23,12 +23,12 @@ export default class NavigationHeader extends React.Component {
             <Grid.Row style={navigationHeaderStyle}>
                 <Tabs>
                     <TabList>
-                        <Tab>Map</Tab>
-                        <Tab onClick={handleTabClick}>Log</Tab>
-                        <Tab>Freerider Path</Tab>
-                        <Tab>Moonlight Path</Tab>
-                        <Tab>New England</Tab>
-                        <Tab>Colorado</Tab>
+                        <Tab onClick={() => handleTabClick('map')}>Map</Tab>
+                        <Tab onClick={() => handleTabClick('log')}>Log</Tab>
+                        <Tab onClick={() => handleTabClick('freerider')}>Freerider Path</Tab>
+                        <Tab onClick={() => handleTabClick('moonlight')}>Moonlight Path</Tab>
+                        <Tab onClick={() => handleTabClick('newEngland')}>New England</Tab>
+                        <Tab onClick={() => handleTabClick('colorado')}>Colorado</Tab>
                     </TabList>
                     <TabPanel> </TabPanel>
                     <TabPanel> </TabPanel>

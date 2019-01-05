@@ -8,7 +8,7 @@ import {GOOGLE_API_KEY} from "../utils/secrets";
 import GoogleSheet from '../components/GoogleSheet';
 import GoogleMap from '../components/GoogleMap';
 import NavigationHeader from '../components/NavigationHeader';
-import {handleError, initialCenterDefault, googleSheetURL} from "../utils/Utils";
+import {handleError, initialCenterDefault, googleSheetURL, googleSheetTabMap } from "../utils/Utils";
 
 class Home extends React.Component {
     constructor(props) {
@@ -86,11 +86,13 @@ class Home extends React.Component {
         }
     };
 
-    handleTabClick = () => {
+    handleTabClick = (tab) => {
         this.setState({
-            showingInfoWindow: false,
-            showingMap: false
-        })
+            showingInfoWindow: tab !== 'map',
+            showingMap: tab === 'map',
+            sheetLoaded: tab !== 'map',
+            googleSheetURLlatest: tab !== 'map' ? googleSheetURL + '/edit#gid=' + googleSheetTabMap[tab] : null
+        });
     };
 
     render() {
@@ -115,15 +117,18 @@ class Home extends React.Component {
                                   value={dropdownValue}
                                   options={locationOptions}
                                   selectOnNavigation={false}
-                                  onChange={this.handleChange} />
+                                  onChange={this.handleChange}
+                        />
                     </Grid.Column>
                     <Grid.Column>
-                        <NavigationHeader handleTabClick={this.handleTabClick}/>
+                        <NavigationHeader handleTabClick={this.handleTabClick} />
                     </Grid.Column>
                 </Grid.Row>
 
                 <GoogleSheet showingInfoWindow={showingInfoWindow}
-                             googleSheetURLlatest={googleSheetURLlatest} />
+                             showingMap={showingMap}
+                             googleSheetURLlatest={googleSheetURLlatest}
+                />
 
                 <GoogleMap isLoading={isLoading}
                            google={google}
@@ -131,7 +136,9 @@ class Home extends React.Component {
                            showingInfoWindow={showingInfoWindow}
                            handleMapClicked={this.handleMapClicked}
                            handleMarkerClick={this.handleMarkerClick}
-                           activeMarker={activeMarker} />
+                           activeMarker={activeMarker}
+                           showingMap={showingMap}
+                />
             </Grid>
         )
     }
